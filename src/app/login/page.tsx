@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Form } from "antd";
+import { Button, Form, Radio } from "antd";
 import Link from "next/link";
 
 export default function Login() {
@@ -18,6 +18,12 @@ export default function Login() {
           layout="vertical"
           className="flex flex-col gap-5"
         >
+          <Form.Item name="userType">
+            <Radio.Group>
+              <Radio value="employer">Employer</Radio>
+              <Radio value="employee">Employee</Radio>
+            </Radio.Group>
+          </Form.Item>
           <Form.Item label="Email" name="email">
             <input type="email" placeholder="Email Address" className="input" />
           </Form.Item>
