@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "../stylesheets/antdOverride.css";
+import "../stylesheets/commonClasses.css";
+import "../stylesheets/layout.css";
+import LayoutProvider from "@/components/LayoutProvider";
 
 export const metadata: Metadata = {
   title: "APS-Jobs",
@@ -11,9 +15,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
+  return <LayoutProvider>{children}</LayoutProvider>;
 }
