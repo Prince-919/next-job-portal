@@ -1,6 +1,7 @@
 :root {
-  --primary: "#24D671";
-  --pure: "#FFFFFF";
+  --primary: #24d671;
+  --pure: #ffffff;
+  --ternary: #334e73;
 }
 
 /* space classes */
@@ -47,6 +48,18 @@
 .p-3 {
   padding: 12px;
 }
+.p-4 {
+  padding: 16px;
+}
+.p-5 {
+  padding: 20px;
+}
+.p-6 {
+  padding: 24px;
+}
+.p-7 {
+  padding: 28px;
+}
 .px-1 {
   padding-right: 4px;
   padding-left: 4px;
@@ -81,6 +94,21 @@
 }
 .flex-col {
   flex-direction: column;
+}
+.gap-1 {
+  gap: 4px;
+}
+.gap-2 {
+  gap: 8px;
+}
+.gap-3 {
+  gap: 12px;
+}
+.gap-4 {
+  gap: 16px;
+}
+.gap-5 {
+  gap: 20px;
 }
 .justify-center {
   justify-content: center;
@@ -117,6 +145,9 @@
 }
 .w-25 {
   width: 25%;
+}
+.w-450 {
+  width: 450px;
 }
 .h-screen {
   height: 100vh;
@@ -161,4 +192,10 @@
 
 .bg-white {
   background: var(--pure);
+}
+
+/* cards */
+.card {
+  border-radius: 4px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }

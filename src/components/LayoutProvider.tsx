@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { ConfigProvider } from "antd";
 
 export default function LayoutProvider({
   children,
@@ -8,7 +9,17 @@ export default function LayoutProvider({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ConfigProvider
+          theme={{
+            token: {
+              colorPrimary: "#24D671",
+            },
+          }}
+        >
+          {children}
+        </ConfigProvider>
+      </body>
     </html>
   );
 }
