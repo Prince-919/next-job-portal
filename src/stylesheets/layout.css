@@ -2,4 +2,70 @@
   display: flex;
   padding: 10px;
   gap: 10px;
+  height: 100vh;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  gap: 10px;
+}
+.logo h1 {
+  font-size: 20px;
+  color: var(--pure);
+  background: #11998e;
+  background: linear-gradient(to right, #38ef7d, #11998e);
+  padding: 8px 16px;
+  border-radius: 10px;
+}
+.logo i {
+  font-size: 20px;
+  color: var(--pure);
+  cursor: pointer;
+}
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background: #0f141e;
+  border-radius: 5px;
+  padding: 5px 20px;
+}
+.menus {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.menu {
+  color: var(--pure);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  padding: 10px;
+  cursor: pointer;
+}
+.menu i {
+  font-size: 18px !important;
+}
+.menu span {
+  font-size: 14px;
+  font-weight: 500;
+}
+.active-menu {
+  background: var(--pure);
+  border-radius: 10px;
+  color: #000;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+  color: var(--pure) !important;
+}
+.user-info i {
+  font-size: 18px !important;
 }
