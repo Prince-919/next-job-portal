@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { ConfigProvider, message } from "antd";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { MENUS } from "@/constants/data";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +19,7 @@ export default function LayoutProvider({
   const dispatch = useDispatch();
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
   const pathname = usePathname();
+  const router = useRouter();
 
   async function getCurrentUser() {
     try {
@@ -37,6 +38,21 @@ export default function LayoutProvider({
       getCurrentUser();
     }
   }, [pathname]);
+
+  async function onLogout() {
+    try {
+      dispatch(setLoading(true));
+      await axios.post("/api/users/logout");
+      message.success("Logged out successfully.");
+      dispatch(setCurrentUser(null));
+      router.push("/login");
+      dispatch(setLoading(false));
+    } catch (error: any) {
+      message.error(error.response.data.message || error.response);
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
 
   return (
     <html lang="en">
@@ -101,7 +117,7 @@ export default function LayoutProvider({
                       <span>{currentUser?.email.slice(0, 15)}...</span>
                     </div>
                   )}
-                  <i className="ri-logout-box-r-line"></i>
+                  <i className="ri-logout-box-r-line" onClick={onLogout}></i>
                 </div>
               </div>
               <div className="body">{children}</div>

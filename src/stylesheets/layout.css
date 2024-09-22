@@ -69,4 +69,5 @@
 }
 .user-info i {
   font-size: 18px !important;
+  cursor: pointer;
 }
