@@ -1,7 +1,6 @@
 .parent-loader {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,11 +11,13 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  border: 5px solid var(--pure);
-  border-top-color: var(--primary);
+  border: 6px solid var(--pure);
+  border-top-color: #fda444;
+  border-left-color: #183a44;
+  border-right-color: #f63f39;
+  border-bottom-color: #1ba58c;
   animation: spin 1s infinite linear;
 }
-
 @keyframes spin {
   0% {
     transform: rotate(0deg);

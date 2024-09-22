@@ -34,12 +34,6 @@ export default function Login() {
           layout="vertical"
           className="flex flex-col gap-5"
         >
-          <Form.Item name="userType">
-            <Radio.Group>
-              <Radio value="employer">Employer</Radio>
-              <Radio value="employee">Employee</Radio>
-            </Radio.Group>
-          </Form.Item>
           <Form.Item label="Email" name="email">
             <input type="email" placeholder="Email Address" className="input" />
           </Form.Item>

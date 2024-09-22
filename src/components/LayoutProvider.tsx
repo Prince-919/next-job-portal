@@ -34,7 +34,7 @@ export default function LayoutProvider({
   }
 
   useEffect(() => {
-    if (pathname !== "/login" && pathname !== "/register") {
+    if (pathname !== "/login" && pathname !== "/register" && !currentUser) {
       getCurrentUser();
     }
   }, [pathname]);
@@ -103,6 +103,7 @@ export default function LayoutProvider({
                             ? "flex-start"
                             : "center",
                         }}
+                        onClick={() => router.push(menu.path)}
                       >
                         <i className={menu.icon}></i>
                         <span>{isSidebarExpanded && menu.name}</span>
@@ -113,8 +114,8 @@ export default function LayoutProvider({
                 <div className="user-info">
                   {isSidebarExpanded && (
                     <div className="flex flex-col">
-                      <span>{currentUser?.name.slice(0, 15)}...</span>
-                      <span>{currentUser?.email.slice(0, 15)}...</span>
+                      <span>{currentUser?.name.slice(0, 12)}...</span>
+                      <span>{currentUser?.email.slice(0, 12)}...</span>
                     </div>
                   )}
                   <i className="ri-logout-box-r-line" onClick={onLogout}></i>
