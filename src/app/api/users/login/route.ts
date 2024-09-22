@@ -16,12 +16,13 @@ export async function POST(request: NextRequest) {
       throw new Error("User does not exists");
     }
 
-    const isMatch = await bcrypt.compare(reqBody.password, reqBody.password);
-    if (isMatch) {
-      throw new Error("Incorrect email or password.");
+    const isMatch = await bcrypt.compare(reqBody.password, user.password);
+    if (!isMatch) {
+      throw new Error("Incorrect email or password");
     }
     const dataToBeSigned = {
       userId: user._id,
+      email: user.email,
     };
     const token = jwt.sign(dataToBeSigned, config.jwtSecret as string, {
       expiresIn: "1d",

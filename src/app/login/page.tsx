@@ -1,11 +1,20 @@
 "use client";
 
-import { Button, Form, Radio } from "antd";
+import { Button, Form, message, Radio } from "antd";
+import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
-  function submitHandler(values: any) {
-    console.log("Login success!", values);
+  const router = useRouter();
+  async function submitHandler(values: any) {
+    try {
+      const response = await axios.post("/api/users/login", values);
+      message.success(response.data.message);
+      router.push("/");
+    } catch (error: any) {
+      message.error(error.response.data.message || "Something went wrong");
+    }
   }
 
   return (
