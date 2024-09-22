@@ -1,11 +1,18 @@
 "use client";
 
-import { Button, Form, Radio } from "antd";
+import { Button, Form, message, Radio } from "antd";
 import Link from "next/link";
+import axios from "axios";
 
 export default function Register() {
-  function submitHandler(values: any) {
-    console.log("Register success!", values);
+  async function submitHandler(values: any) {
+    try {
+      const response = await axios.post("/api/users/register", values);
+      message.success(response.data.message);
+    } catch (error: any) {
+      message.error(error.response.data.message || "Something went wrong");
+    } finally {
+    }
   }
 
   return (

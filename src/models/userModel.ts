@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
+    userType: {
+      type: String,
+      required: true,
+      default: "employee",
+    },
     name: {
       type: String,
       required: true,
@@ -26,8 +31,11 @@ const userSchema = new mongoose.Schema(
 );
 
 // delete old model
-const UserModel = mongoose.model("User");
-mongoose.deleteModel(UserModel.modelName);
+if (mongoose.models.users) {
+  const UserModel = mongoose.model("users");
+  mongoose.deleteModel(UserModel.modelName);
+}
 
 // craete new model
-module.exports = mongoose.model("User", userSchema);
+const User = mongoose.model("users", userSchema);
+export default User;
