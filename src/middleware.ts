@@ -10,6 +10,9 @@ export function middleware(request: NextRequest) {
     if (!token && !isPublicPage) {
       return NextResponse.redirect(new URL("/login", request.nextUrl));
     }
+    if (token && isPublicPage) {
+      return NextResponse.redirect(new URL("/", request.nextUrl));
+    }
     return NextResponse.next();
   } catch (error: any) {
     return NextResponse.error();
