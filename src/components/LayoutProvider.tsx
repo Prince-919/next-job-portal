@@ -6,6 +6,8 @@ import { MENUS } from "@/constants/data";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "@/redux/usersSlice";
+import Loader from "./Loader";
+import { setLoading } from "@/redux/loaderSlice";
 
 export default function LayoutProvider({
   children,
@@ -13,21 +15,27 @@ export default function LayoutProvider({
   children: React.ReactNode;
 }) {
   const { currentUser } = useSelector((state: any) => state.users);
+  const { loading } = useSelector((state: any) => state.loaders);
   const dispatch = useDispatch();
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
   const pathname = usePathname();
 
   async function getCurrentUser() {
     try {
+      dispatch(setLoading(true));
       const response = await axios.get("/api/users/currentuser");
       dispatch(setCurrentUser(response.data.data));
+      dispatch(setLoading(false));
     } catch (error: any) {
       message.error(error.response.data.message || error.response);
+      dispatch(setLoading(false));
     }
   }
 
   useEffect(() => {
-    getCurrentUser();
+    if (pathname !== "/login" && pathname !== "/register") {
+      getCurrentUser();
+    }
   }, [pathname]);
 
   return (
@@ -46,6 +54,7 @@ export default function LayoutProvider({
             },
           }}
         >
+          {loading && <Loader />}
           {pathname === "/login" || pathname === "/register" ? (
             <div>{children}</div>
           ) : (
