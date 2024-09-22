@@ -1,16 +1,35 @@
 "use client";
-import React, { useState } from "react";
-import { ConfigProvider } from "antd";
+import React, { useEffect, useState } from "react";
+import { ConfigProvider, message } from "antd";
 import { usePathname } from "next/navigation";
 import { MENUS } from "@/constants/data";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentUser } from "@/redux/usersSlice";
 
 export default function LayoutProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { currentUser } = useSelector((state: any) => state.users);
+  const dispatch = useDispatch();
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
   const pathname = usePathname();
+
+  async function getCurrentUser() {
+    try {
+      const response = await axios.get("/api/users/currentuser");
+      dispatch(setCurrentUser(response.data.data));
+    } catch (error: any) {
+      message.error(error.response.data.message || error.response);
+    }
+  }
+
+  useEffect(() => {
+    getCurrentUser();
+  }, [pathname]);
+
   return (
     <html lang="en">
       <head>
@@ -69,8 +88,8 @@ export default function LayoutProvider({
                 <div className="user-info">
                   {isSidebarExpanded && (
                     <div className="flex flex-col">
-                      <span>User name </span>
-                      <span>User email</span>
+                      <span>{currentUser?.name.slice(0, 15)}...</span>
+                      <span>{currentUser?.email.slice(0, 15)}...</span>
                     </div>
                   )}
                   <i className="ri-logout-box-r-line"></i>

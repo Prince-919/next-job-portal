@@ -4,6 +4,7 @@ import "../stylesheets/antdOverride.css";
 import "../stylesheets/commonClasses.css";
 import "../stylesheets/layout.css";
 import LayoutProvider from "@/components/LayoutProvider";
+import ReduxProvider from "@/components/ReduxProvider";
 
 export const metadata: Metadata = {
   title: "APS-Jobs",
@@ -15,5 +16,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <LayoutProvider>{children}</LayoutProvider>;
+  return (
+    <ReduxProvider>
+      <LayoutProvider>{children}</LayoutProvider>
+    </ReduxProvider>
+  );
 }
