@@ -37,6 +37,11 @@ export default function EmployerForm() {
           </Form.Item>
         </Col>
         <Col span={24}>
+          <Form.Item label="About" name="about">
+            <textarea />
+          </Form.Item>
+        </Col>
+        <Col span={24}>
           <Form.Item label="Address" name="address">
             <textarea />
           </Form.Item>

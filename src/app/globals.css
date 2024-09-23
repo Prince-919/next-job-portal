@@ -62,3 +62,15 @@ a:hover {
   border-bottom: 1px solid #e0e0e0;
   height: 1px;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1eff2;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e2e0ea;
+  border-radius: 5px;
+}

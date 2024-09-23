@@ -10,7 +10,7 @@ export default function EmployeeForm() {
           <Form.Item
             label="Name"
             name="name"
-            rules={[{ required: true, message: "Name is required" }]}
+            rules={[{ required: true, message: "Required" }]}
           >
             <input type="text" />
           </Form.Item>
@@ -19,40 +19,35 @@ export default function EmployeeForm() {
           <Form.Item
             label="Email"
             name="email"
-            rules={[{ required: true, message: "Email is required" }]}
+            rules={[{ required: true, message: "Required" }]}
           >
             <input type="email" />
           </Form.Item>
         </Col>
         <Col span={8}>
-          <Form.Item
-            label="Phone Number"
-            name="phone"
-            rules={[{ required: true, message: "Phone number is required" }]}
-          >
+          <Form.Item label="Phone" name="phone">
             <input type="text" />
           </Form.Item>
         </Col>
         <Col span={24}>
-          <Form.Item
-            label="Carrier Objective"
-            name="carrierObjective"
-            rules={[
-              { required: true, message: "Carrier objective is required" },
-            ]}
-          >
+          <Form.Item label="Carrier Objective" name="carrierObjective">
             <textarea />
           </Form.Item>
         </Col>
       </Row>
-      {/* Education */}
-      <div style={{ marginTop: 30 }}>
+
+      {/* education */}
+      <div
+        style={{
+          marginTop: 35,
+        }}
+      >
         <h1 className="text-md">Education</h1>
-        <Form.List name="educations">
+        <Form.List name="education">
           {(fields, { add, remove }) => (
             <>
               {fields.map(({ key, name, ...restField }) => (
-                <Row key={key} align="bottom" gutter={[16, 16]}>
+                <Row key={key} gutter={[16, 16]} align="bottom">
                   <Col span={8}>
                     <Form.Item
                       {...restField}
@@ -68,10 +63,11 @@ export default function EmployeeForm() {
                       <input type="text" />
                     </Form.Item>
                   </Col>
+
                   <Col span={8}>
                     <Form.Item
                       {...restField}
-                      name={[name, "institutaion"]}
+                      name={[name, "institution"]}
                       rules={[
                         {
                           required: true,
@@ -83,6 +79,7 @@ export default function EmployeeForm() {
                       <input type="text" />
                     </Form.Item>
                   </Col>
+
                   <Col span={4}>
                     <Form.Item
                       {...restField}
@@ -98,10 +95,8 @@ export default function EmployeeForm() {
                       <input type="text" />
                     </Form.Item>
                   </Col>
+
                   <i
-                    style={{
-                      fontSize: "18px",
-                    }}
                     className="ri-delete-bin-line"
                     onClick={() => remove(name)}
                   ></i>
@@ -109,21 +104,26 @@ export default function EmployeeForm() {
               ))}
               <Form.Item className="my-2">
                 <Button type="dashed" onClick={() => add()} block>
-                  Add education
+                  Add Education
                 </Button>
               </Form.Item>
             </>
           )}
         </Form.List>
       </div>
-      {/* Skills */}
-      <div style={{ marginTop: 30 }}>
+
+      {/* skills */}
+      <div
+        style={{
+          marginTop: 35,
+        }}
+      >
         <h1 className="text-md">Skills</h1>
         <Form.List name="skills">
           {(fields, { add, remove }) => (
             <>
               {fields.map(({ key, name, ...restField }) => (
-                <Row key={key} align="bottom" gutter={[16, 16]}>
+                <Row key={key} gutter={[16, 16]} align="bottom">
                   <Col span={8}>
                     <Form.Item
                       {...restField}
@@ -139,6 +139,7 @@ export default function EmployeeForm() {
                       <input type="text" />
                     </Form.Item>
                   </Col>
+
                   <Col span={8}>
                     <Form.Item
                       {...restField}
@@ -154,10 +155,8 @@ export default function EmployeeForm() {
                       <input type="text" />
                     </Form.Item>
                   </Col>
+
                   <i
-                    style={{
-                      fontSize: "18px",
-                    }}
                     className="ri-delete-bin-line"
                     onClick={() => remove(name)}
                   ></i>
@@ -165,21 +164,26 @@ export default function EmployeeForm() {
               ))}
               <Form.Item className="my-2">
                 <Button type="dashed" onClick={() => add()} block>
-                  Add skill
+                  Add Skill
                 </Button>
               </Form.Item>
             </>
           )}
         </Form.List>
       </div>
-      {/* Experience */}
-      <div style={{ marginTop: 30 }}>
+
+      {/* experience */}
+      <div
+        style={{
+          marginTop: 35,
+        }}
+      >
         <h1 className="text-md">Experience</h1>
         <Form.List name="experience">
           {(fields, { add, remove }) => (
             <>
               {fields.map(({ key, name, ...restField }) => (
-                <Row key={key} align="bottom" gutter={[16, 16]}>
+                <Row key={key} gutter={[16, 16]} align="bottom">
                   <Col span={8}>
                     <Form.Item
                       {...restField}
@@ -195,6 +199,7 @@ export default function EmployeeForm() {
                       <input type="text" />
                     </Form.Item>
                   </Col>
+
                   <Col span={8}>
                     <Form.Item
                       {...restField}
@@ -207,9 +212,10 @@ export default function EmployeeForm() {
                       ]}
                       label="Role"
                     >
-                      <input type="text" />
+                      <input type="role" />
                     </Form.Item>
                   </Col>
+
                   <Col span={4}>
                     <Form.Item
                       {...restField}
@@ -220,16 +226,13 @@ export default function EmployeeForm() {
                           message: "Required",
                         },
                       ]}
-                      label="Period of work"
+                      label="Period of Work"
                     >
                       <input type="text" />
                     </Form.Item>
                   </Col>
 
                   <i
-                    style={{
-                      fontSize: "18px",
-                    }}
                     className="ri-delete-bin-line"
                     onClick={() => remove(name)}
                   ></i>
@@ -237,7 +240,7 @@ export default function EmployeeForm() {
               ))}
               <Form.Item className="my-2">
                 <Button type="dashed" onClick={() => add()} block>
-                  Add experience
+                  Add Experience
                 </Button>
               </Form.Item>
             </>
