@@ -20,12 +20,21 @@ export default function LayoutProvider({
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
   const pathname = usePathname();
   const router = useRouter();
+  const [menuItems, setMenuItems] = useState(MENUS);
 
   async function getCurrentUser() {
     try {
       dispatch(setLoading(true));
       const response = await axios.get("/api/users/currentuser");
+      const isEmployer = (response.data.data.userType = "employer");
       dispatch(setCurrentUser(response.data.data));
+      if (isEmployer) {
+        const tempMenuItems = menuItems;
+        tempMenuItems[2].name = "Posted Jobs";
+        tempMenuItems[2].path = "/jobs";
+        setMenuItems(tempMenuItems);
+      }
+
       dispatch(setLoading(false));
     } catch (error: any) {
       message.error(error.response.data.message || error.response);
@@ -93,7 +102,7 @@ export default function LayoutProvider({
                     )}
                   </div>
                   <div className="menus">
-                    {MENUS.map((menu, index) => {
+                    {menuItems.map((menu, index) => {
                       const isActive = pathname === menu.path;
                       return (
                         <div

@@ -12,7 +12,8 @@ body {
 }
 
 input,
-textarea {
+textarea,
+select {
   height: 45px;
   width: 100%;
   border: 2px solid #dde6ef;
@@ -24,13 +25,16 @@ textarea {
   min-height: 100px;
   padding-top: 10px;
 }
+
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   border: 2px solid #dde6ef;
   outline: none;
 }
 input:hover,
-textarea:hover {
+textarea:hover,
+select:hover {
   border: 2px solid var(--primary);
 }
 label {
