@@ -24,7 +24,7 @@ export default function JobPostForm() {
         </Form.Item>
       </Col>
       <Col span={8}>
-        <Form.Item label="Type" name="type">
+        <Form.Item label="Type" name="jobType">
           <select>
             <option value="full-time">Full Time</option>
             <option value="part-time">Part Time</option>
@@ -52,12 +52,12 @@ export default function JobPostForm() {
       </Col>
       <Col span={8}>
         <Form.Item label="Salary from range" name="salaryFromRange">
-          <input type="text" />
+          <input type="number" />
         </Form.Item>
       </Col>
       <Col span={8}>
         <Form.Item label="Salary to range" name="salaryToRange">
-          <input type="text" />
+          <input type="number" />
         </Form.Item>
       </Col>
     </Row>
