@@ -26,7 +26,11 @@ export async function GET(request: NextRequest) {
     await validateJWT(request);
     const { searchParams } = new URL(request.url);
     const user = searchParams.get("user");
-    const jobs = await Job.find({ user });
+    const filtersObject: any = {};
+    if (user) {
+      filtersObject.user = user;
+    }
+    const jobs = await Job.find(filtersObject).populate("user");
     return NextResponse.json({
       message: "Jobs fetched successfully",
       data: jobs,

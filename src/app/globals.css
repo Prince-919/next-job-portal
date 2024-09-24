@@ -82,3 +82,9 @@ table {
   border: 1px solid #e0e0e0 !important;
   border-radius: 5px !important;
 }
+
+.new-card {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 10px;
+  padding: 20px;
+}
