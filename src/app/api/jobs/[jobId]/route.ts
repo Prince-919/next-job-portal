@@ -8,7 +8,7 @@ dbConnect();
 export async function GET(request: NextRequest, { params }: any) {
   try {
     await validateJWT(request);
-    const job = await Job.findById(params.jobId);
+    const job = await Job.findById(params.jobId).populate("user");
     return NextResponse.json({
       message: "Job fetched successfully",
       data: job,

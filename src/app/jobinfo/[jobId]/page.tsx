@@ -108,6 +108,12 @@ export default function page() {
                 Cancel
               </Button>
               <Button
+                type="default"
+                onClick={() => router.push(`/userinfo/${jobData.user._id}`)}
+              >
+                View company info
+              </Button>
+              <Button
                 disabled={applications.length > 0}
                 type="primary"
                 onClick={onApply}
