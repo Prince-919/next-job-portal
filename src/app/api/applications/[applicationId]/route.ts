@@ -19,7 +19,7 @@ export async function PUT(request: NextRequest, { params }: any) {
         runValidators: true,
       }
     );
-    console.log(application);
+
     await sendEmail({
       to: application.user.email,
       subject: "Your application status has been updated",

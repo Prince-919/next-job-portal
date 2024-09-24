@@ -44,6 +44,7 @@
   background: #11101d;
   border-radius: 5px;
   padding: 5px 20px;
+  max-width: 250px;
 }
 .menus {
   display: flex;

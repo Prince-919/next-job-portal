@@ -60,7 +60,7 @@ export default function Applications() {
   return (
     <div>
       <div className="flex justify-between items-center">
-        <PageTitle title="Jobs" />
+        <PageTitle title="Applications" />
       </div>
       <div className="my-2">
         <Table columns={columns} dataSource={applications} />
