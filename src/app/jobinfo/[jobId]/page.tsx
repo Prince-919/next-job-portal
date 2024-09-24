@@ -5,9 +5,10 @@ import { setLoading } from "@/redux/loaderSlice";
 import { Button, Col, message, Row } from "antd";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function page() {
+  const { currentUser } = useSelector((state) => state.users);
   const [jobData, setJobData] = useState<any>(null);
   const dispatch = useDispatch();
   const { jobId } = useParams();
@@ -29,7 +30,21 @@ export default function page() {
     fetchJobs();
   }, []);
 
-  async function onApply() {}
+  async function onApply() {
+    try {
+      dispatch(setLoading(true));
+      const response = await axios.post("/api/applications", {
+        job: jobData._id,
+        user: currentUser._id,
+        status: "pending",
+      });
+      message.success(response.data.message);
+    } catch (error: any) {
+      message.error(error.message);
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
 
   return (
     jobData && (
