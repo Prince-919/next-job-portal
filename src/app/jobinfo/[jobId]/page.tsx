@@ -8,8 +8,9 @@ import { useParams, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function page() {
-  const { currentUser } = useSelector((state) => state.users);
+  const { currentUser } = useSelector((state: any) => state.users);
   const [jobData, setJobData] = useState<any>(null);
+  const [applications, setApplications] = useState<any[]>([]);
   const dispatch = useDispatch();
   const { jobId } = useParams();
   const router = useRouter();
@@ -25,9 +26,23 @@ export default function page() {
       dispatch(setLoading(false));
     }
   }
+  async function fetchApplications() {
+    try {
+      dispatch(setLoading(true));
+      const response = await axios.get(
+        `/api/applications?job=${jobId}&user=${currentUser._id}`
+      );
+      setApplications(response.data.data);
+    } catch (error: any) {
+      message.error(error.message);
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
 
   useEffect(() => {
     fetchJobs();
+    fetchApplications();
   }, []);
 
   async function onApply() {
@@ -79,14 +94,24 @@ export default function page() {
               <span>{jobData.experience} years</span>
             </div>
           </Col>
-          <Col span={24}>
+          <Col span={24} className="flex flex-col gap-2">
             <h1 className="text-md">Job Description</h1>
             <span className="text-justify">{jobData.description}</span>
+            {applications.length > 0 && (
+              <span className="my-3 applied p-3">
+                You have already applied for this job, Please wait for the
+                employer to respond.
+              </span>
+            )}
             <div className="flex justify-end gap-3 my-3">
               <Button type="default" onClick={() => router.back()}>
                 Cancel
               </Button>
-              <Button type="primary" onClick={onApply}>
+              <Button
+                disabled={applications.length > 0}
+                type="primary"
+                onClick={onApply}
+              >
                 Apply
               </Button>
             </div>

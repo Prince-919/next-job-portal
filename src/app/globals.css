@@ -88,3 +88,11 @@ table {
   border-radius: 10px;
   padding: 20px;
 }
+
+.applied {
+  color: #1e352f;
+  font-weight: 500;
+  font-size: 15px;
+  background: rgba(11, 156, 49, 0.2);
+  border-radius: 5px;
+}

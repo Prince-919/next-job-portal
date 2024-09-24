@@ -15,6 +15,7 @@ export default function LayoutProvider({
   children: React.ReactNode;
 }) {
   const { currentUser } = useSelector((state: any) => state.users);
+
   const { loading } = useSelector((state: any) => state.loaders);
   const dispatch = useDispatch();
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
@@ -26,15 +27,15 @@ export default function LayoutProvider({
     try {
       dispatch(setLoading(true));
       const response = await axios.get("/api/users/currentuser");
-      const isEmployer = (response.data.data.userType = "employer");
-      dispatch(setCurrentUser(response.data.data));
+      const isEmployer = response.data.data.userType === "employer";
+
       if (isEmployer) {
-        const tempMenuItems = menuItems;
+        const tempMenuItems: any = menuItems;
         tempMenuItems[2].name = "Posted Jobs";
         tempMenuItems[2].path = "/jobs";
         setMenuItems(tempMenuItems);
       }
-
+      dispatch(setCurrentUser(response.data.data));
       dispatch(setLoading(false));
     } catch (error: any) {
       message.error(error.response.data.message || error.response);
