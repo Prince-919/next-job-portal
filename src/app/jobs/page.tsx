@@ -1,16 +1,19 @@
 "use client";
 
 import PageTitle from "@/components/PageTitle";
-import { Button, message, Table } from "antd";
+import { Button, message, Table, Tooltip } from "antd";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from "@/redux/loaderSlice";
 import moment from "moment";
+import Applications from "@/components/Applications";
 
 export default function Jobs() {
   const [jobs, setJobs] = useState([]);
+  const [selectedJob, setSelectedJob] = useState({} as any);
+  const [showApplications, setShowApplications] = useState<boolean>(false);
   const { currentUser } = useSelector((state: any) => state.users);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -77,14 +80,27 @@ export default function Jobs() {
       render: function (text: any, record: any) {
         return (
           <div className="flex gap-3 ">
-            <i
-              className="ri-delete-bin-line cursor-pointer delete-color"
-              onClick={() => deleteJob(record._id)}
-            ></i>
-            <i
-              className="ri-pencil-line cursor-pointer edit-color"
-              onClick={() => router.push(`/jobs/edit/${record._id}`)}
-            ></i>
+            <Tooltip title="Delete">
+              <i
+                className="ri-delete-bin-line cursor-pointer delete-color"
+                onClick={() => deleteJob(record._id)}
+              ></i>
+            </Tooltip>
+            <Tooltip title="Edit">
+              <i
+                className="ri-pencil-line cursor-pointer edit-color"
+                onClick={() => router.push(`/jobs/edit/${record._id}`)}
+              ></i>
+            </Tooltip>
+            <Tooltip title="Applications">
+              <i
+                className="ri-file-list-3-line view-color cursor-pointer"
+                onClick={() => {
+                  setSelectedJob(record);
+                  setShowApplications(true);
+                }}
+              ></i>
+            </Tooltip>
           </div>
         );
       },
@@ -102,6 +118,13 @@ export default function Jobs() {
       <div className="my-2">
         <Table columns={columns} dataSource={jobs} />
       </div>
+      {showApplications && (
+        <Applications
+          selectedJob={selectedJob}
+          showApplications={showApplications}
+          setShowApplications={setShowApplications}
+        />
+      )}
     </div>
   );
 }

@@ -212,3 +212,7 @@
   color: #ff4d4f;
   font-size: 16px;
 }
+.view-color {
+  color: var(--primary);
+  font-size: 16px;
+}
