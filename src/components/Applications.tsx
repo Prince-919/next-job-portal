@@ -14,8 +14,8 @@ export default function Applications({
   setShowApplications,
 }: {
   selectedJob: any;
-  showApplications: boolean;
-  setShowApplications: boolean;
+  showApplications: any;
+  setShowApplications: any;
 }) {
   const [applications, setApplications] = useState([]);
   const dispatch = useDispatch();
