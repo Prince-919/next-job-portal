@@ -38,28 +38,29 @@ export default function Home() {
             <Col
               span={8}
               key={job._id}
-              className="new-card flex flex-col gap-2 py-3 cursor-pointer"
               onClick={() => router.push(`/jobinfo/${job._id}`)}
             >
-              <h1 className="text-md">{job.title}</h1>
+              <div className="new-card flex flex-col gap-2 py-3 cursor-pointer">
+                <h1 className="text-md">{job.title}</h1>
 
-              <div className="flex justify-between">
-                <span>Company</span>
-                <span>{job.user.name}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Location</span>
-                <span>{job.location}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Salary</span>
-                <span>
-                  {job.salaryFromRange} - {job.salaryToRange} LPA
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span>Work mode</span>
-                <span>{job.workMode}</span>
+                <div className="flex justify-between">
+                  <span>Company</span>
+                  <span>{job.user.name}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Location</span>
+                  <span>{job.location}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Salary</span>
+                  <span>
+                    {job.salaryFromRange} - {job.salaryToRange} LPA
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Work mode</span>
+                  <span>{job.workMode}</span>
+                </div>
               </div>
             </Col>
           );
