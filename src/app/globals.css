@@ -78,3 +78,7 @@ a:hover {
   background: #e2e0ea;
   border-radius: 5px;
 }
+table {
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 5px !important;
+}

@@ -5,6 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 dbConnect();
 
+// Create a new job
 export async function POST(request: NextRequest) {
   try {
     const userId = await validateJWT(request);
@@ -13,6 +14,22 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       message: "Job posted successfully",
       data: job,
+    });
+  } catch (error: any) {
+    return NextResponse.json({ message: error.message }, { status: 500 });
+  }
+}
+
+// Get all jobs post
+export async function GET(request: NextRequest) {
+  try {
+    await validateJWT(request);
+    const { searchParams } = new URL(request.url);
+    const user = searchParams.get("user");
+    const jobs = await Job.find({ user });
+    return NextResponse.json({
+      message: "Jobs fetched successfully",
+      data: jobs,
     });
   } catch (error: any) {
     return NextResponse.json({ message: error.message }, { status: 500 });

@@ -199,3 +199,16 @@
   border-radius: 4px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.edit-color {
+  color: #023351;
+  font-size: 16px;
+}
+.delete-color {
+  color: #ff4d4f;
+  font-size: 16px;
+}

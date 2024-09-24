@@ -61,8 +61,8 @@ export default function JobPostForm() {
           rules={[{ required: true, message: "Work mode are required" }]}
         >
           <select>
-            <option value="full-time">Remote</option>
-            <option value="part-time">Office</option>
+            <option value="remote">Remote</option>
+            <option value="office">Office</option>
           </select>
         </Form.Item>
       </Col>
