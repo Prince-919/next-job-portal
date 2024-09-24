@@ -7,7 +7,7 @@ import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function page() {
+export default function JobInfo() {
   const { currentUser } = useSelector((state: any) => state.users);
   const [jobData, setJobData] = useState<any>(null);
   const [applications, setApplications] = useState<any[]>([]);
