@@ -1,9 +1,10 @@
 "use client";
 
 import { setLoading } from "@/redux/loaderSlice";
-import { message, Modal, Table } from "antd";
+import { Button, message, Modal, Table } from "antd";
 import axios from "axios";
 import moment from "moment";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -18,6 +19,7 @@ export default function Applications({
 }) {
   const [applications, setApplications] = useState([]);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   async function fetchApplications() {
     try {
@@ -84,6 +86,17 @@ export default function Applications({
           <option value="shortlisted">Shortlisted</option>
           <option value="rejected">Rejected</option>
         </select>
+      ),
+    },
+    {
+      title: "Action",
+      dataIndex: "_id",
+      render: (applicationId: string, application: any) => (
+        <Button
+          onClick={() => router.push(`/userinfo/${application.user._id}`)}
+        >
+          View
+        </Button>
       ),
     },
   ];
