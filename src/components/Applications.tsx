@@ -5,7 +5,7 @@ import { message, Modal, Table } from "antd";
 import axios from "axios";
 import moment from "moment";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export default function Applications({
   selectedJob,
@@ -26,6 +26,21 @@ export default function Applications({
         `/api/applications?job=${selectedJob._id}`
       );
       setApplications(response.data.data);
+    } catch (error: any) {
+      message.error(error.message);
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
+
+  async function onStatusUpdate(applicationId: string, status: string) {
+    try {
+      dispatch(setLoading(true));
+      const response = await axios.put(`/api/applications/${applicationId}`, {
+        status,
+      });
+      message.success(response.data.message);
+      fetchApplications();
     } catch (error: any) {
       message.error(error.message);
     } finally {
@@ -60,8 +75,11 @@ export default function Applications({
     {
       title: "Status",
       dataIndex: "status",
-      render: (status: string) => (
-        <select value={status}>
+      render: (status: string, record: any) => (
+        <select
+          value={status}
+          onChange={(e) => onStatusUpdate(record._id, e.target.value)}
+        >
           <option value="pending">Pending</option>
           <option value="shortlisted">Shortlisted</option>
           <option value="rejected">Rejected</option>
