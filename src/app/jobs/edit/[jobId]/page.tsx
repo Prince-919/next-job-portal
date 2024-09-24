@@ -14,7 +14,6 @@ export default function EditJob() {
   const router = useRouter();
   const dispatch = useDispatch();
   const { jobId } = useParams();
-  console.log(jobId);
 
   async function submitHandler(values: any) {
     try {

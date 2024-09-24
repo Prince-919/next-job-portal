@@ -38,6 +38,7 @@ export default function LayoutProvider({
       dispatch(setLoading(false));
     } catch (error: any) {
       message.error(error.response.data.message || error.response);
+      message.error("Please clear your cookies and try again");
       dispatch(setLoading(false));
     }
   }
